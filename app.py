@@ -3,6 +3,7 @@ import joblib
 import numpy as np
 from flask import Flask, render_template, request
 from pymongo import MongoClient
+from dotenv import load_dotenv
 
 # ---------------- APP SETUP ----------------
 app = Flask(__name__)
@@ -17,9 +18,13 @@ print("Model loaded successfully")
 print("Model expects features:", model.n_features_in_)
 
 # ---------------- MONGODB ----------------
-client = MongoClient("mongodb+srv://vansh_20:sheetal@cluster0.nblowqv.mongodb.net/?appName=Cluster0")
-db = client["cybersecurity_db"]
-pred_col = db["predictions"]
+load_dotenv()   # .env file load karta hai
+
+MONGO_URI = os.getenv("MONGO_URI")
+
+client = MongoClient(MONGO_URI)
+db = client.get_database("cybersecurity_db")
+pred_col = db.get_collection("predictions")
 
 print("MongoDB connected")
 
