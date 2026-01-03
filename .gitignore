@@ -1,0 +1,9 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Environment variables
+.env
+
+# Machine Learning model
+ml/model.pkl

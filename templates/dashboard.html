@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Security Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='LOGO.png') }}" type="image/svg+xml">
+
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="site-wrap">
+            <div class="header-brand">
+                <img src="{{ url_for('static', filename='logo.svg') }}" alt="Logo" class="site-logo">
+                <h1 class="site-title">📊 Cybersecurity Dashboard</h1>
+            </div>
+            <p class="site-subtitle">Overview of recent predictions and alerts</p>
+        </div>
+    </header>
+
+    <p>
+            <b>Normal:</b> {{ normal_count }} |
+            <b>Attack:</b> {{ attack_count }}
+    </p>
+
+    <div class="dashboard">
+    <div class="table-container">
+        <table class="dashboard-table">
+            <thead>
+                <tr>
+                    <th>Duration</th>
+                    <th>Source Bytes</th>
+                    <th>Destination Bytes</th>
+                    <th>Prediction</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for r in records %}
+                <tr>
+                    <td>{{ r.duration }}</td>
+                    <td>{{ r.src_bytes }}</td>
+                    <td>{{ r.dst_bytes }}</td>
+                    <td>
+                        {% if "Attack" in r.prediction %}
+                            <span class="status-attack">{{ r.prediction }}</span>
+                        {% else %}
+                            <span class="status-normal">{{ r.prediction }}</span>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="nav-container">
+        <a class="nav-link home-cta" href="/">⬅ Back to Home</a>
+    </div>
+</div>
+
+</body>
+</html>

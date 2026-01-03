@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AI Logo">
+  <rect width="128" height="128" rx="22" fill="#0ea5e9" />
+  <circle cx="40" cy="40" r="18" fill="#fff" opacity="0.12" />
+  <g fill="#081129" font-family="Poppins, Arial, sans-serif" font-weight="700" font-size="56" text-anchor="middle" dominant-baseline="middle">
+    <text x="64" y="74" fill="#ffffff">AI</text>
+  </g>
+</svg>

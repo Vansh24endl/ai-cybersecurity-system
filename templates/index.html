@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Cybersecurity System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='LOGO.png') }}" type="image/svg+xml">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="site-wrap">
+            <div class="header-brand">
+                <img src="{{ url_for('static', filename='logo.svg') }}" alt="Logo" class="site-logo">
+                <h1 class="site-title">AI Cybersecurity System</h1>
+            </div>
+            <p class="site-subtitle">Realtime traffic inspection · lightweight · explainable</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="card">
+
+        <form method="POST">
+            <label>Duration:</label>
+            <input type="number" name="duration" step="any" required>
+
+            <label>Source Bytes:</label>
+            <input type="number" name="src_bytes" step="any" required>
+
+            <label>Destination Bytes:</label>
+            <input type="number" name="dst_bytes" step="any" required>
+
+            <button type="submit">Check Traffic</button>
+        </form>
+
+        {% if prediction %}
+            <div class="result">Prediction Result: {{ prediction }}</div>
+        {% endif %}
+
+        {% if prediction and "Attack" in prediction %}
+            <div class="alert">🚨 Security Alert Detected!</div>
+        {% endif %}
+
+        {% if error %}
+            <div class="error">Error: {{ error }}</div>
+        {% endif %}
+
+        <div class="nav-container">
+            <a class="nav-link dashboard-cta" href="/dashboard">📊 View Dashboard</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
